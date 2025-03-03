@@ -11,6 +11,7 @@ import {
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useTypingTest } from "./typeTest.hooks";
+import { useUpProvider } from "../../services/providers/UPProvider";
 
 export const TypeTest = ({
   difficulty,
@@ -21,11 +22,21 @@ export const TypeTest = ({
   setDifficulty: (difficulty: "easy" | "medium" | "hard" | "") => void;
   text: string;
 }) => {
-  const { typed, wpm, accuracy, timer, isCompleted, handleTyping, resetTest } =
-    useTypingTest(text);
+  const {
+    typed,
+    wpm,
+    accuracy,
+    timer,
+    isCompleted,
+    handleTyping,
+    resetTest,
+    inputDisabled,
+    checkHighscores
+  } = useTypingTest(text, difficulty);
+  const { accounts } = useUpProvider();
 
   return (
-    <div className="bg-white bg-opacity-95 shadow-lg p-8 rounded-xl h-[600px] w-[500px] relative flex flex-col animate-fadeInSlideUp">
+    <div className="bg-white bg-opacity-95 shadow-lg p-8 rounded-xl h-[auto] w-[500px] relative flex flex-col animate-fadeInSlideUp">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-2">
           <IconButton
@@ -73,15 +84,15 @@ export const TypeTest = ({
         <Typography
           variant="body1"
           className="leading-relaxed whitespace-pre-wrap"
-          sx={{ 
-            color: '#4F5882', 
+          sx={{
+            color: "#4F5882",
             opacity: 0.9,
-            fontFamily: 'monospace',
-            userSelect: 'none',
-            WebkitUserSelect: 'none',
-            MozUserSelect: 'none',
-            msUserSelect: 'none',
-            cursor: 'default'
+            fontFamily: "monospace",
+            userSelect: "none",
+            WebkitUserSelect: "none",
+            MozUserSelect: "none",
+            msUserSelect: "none",
+            cursor: "default",
           }}
         >
           {text}
@@ -96,6 +107,7 @@ export const TypeTest = ({
         className="mb-8"
         multiline
         rows={3}
+        disabled={inputDisabled}
         value={typed}
         onChange={(e) => handleTyping(e.target.value)}
         sx={{
@@ -140,7 +152,7 @@ export const TypeTest = ({
         >
           <CardContent className="text-center p-3 !pb-3">
             <Typography variant="h6" sx={{ color: "#4F5882" }}>
-              {timer}s
+              {timer.toFixed(1)}s
             </Typography>
             <Typography
               variant="caption"
@@ -152,17 +164,41 @@ export const TypeTest = ({
         </Card>
       </div>
 
-      <Button
-        variant="contained"
-        color="secondary"
-        className="mt-auto"
-        fullWidth
-        onClick={resetTest}
-      >
-        <Typography variant="caption" sx={{ fontWeight: 600 }}>
-          Reset
-        </Typography>
-      </Button>
+      <div className="flex w-full flex-col gap-[12px]">
+        <Button
+          variant="contained"
+          color="secondary"
+          className="mt-auto"
+          fullWidth
+          onClick={resetTest}
+        >
+          <Typography variant="caption" sx={{ fontWeight: 600 }}>
+            Reset
+          </Typography>
+        </Button>
+        {(!accounts || accounts.length < 1) && isCompleted && (
+          <Typography
+            variant="h5"
+            color="secondary"
+            sx={{ fontWeight: 600, textAlign: "center" }}
+          >
+            Connect wallet to submit!
+          </Typography>
+        )}
+        {accounts && accounts.length > 0 && isCompleted && (
+          <Button
+            variant="contained"
+            color="secondary"
+            className="mt-auto"
+            fullWidth
+            onClick={checkHighscores}
+          >
+            <Typography variant="caption" sx={{ fontWeight: 600 }}>
+              Submit high score!
+            </Typography>
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

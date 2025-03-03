@@ -3,6 +3,7 @@ import "./global.css";
 import App from "./App.tsx";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { UpProvider } from "./services/providers/UPProvider.tsx";
+import { Toaster } from 'react-hot-toast';
 
 const theme = createTheme({
   palette: {
@@ -19,6 +20,7 @@ const theme = createTheme({
 createRoot(document.getElementById("root")!).render(
   <UpProvider>
     <ThemeProvider theme={theme}>
+      <Toaster position="top-right" />
       <App />
     </ThemeProvider>
   </UpProvider>
