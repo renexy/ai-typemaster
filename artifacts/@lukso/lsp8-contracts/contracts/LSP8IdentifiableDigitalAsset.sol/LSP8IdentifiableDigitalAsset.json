@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
-  "contractName": "LSP7DigitalAsset",
-  "sourceName": "@lukso/lsp7-contracts/contracts/LSP7DigitalAsset.sol",
+  "contractName": "LSP8IdentifiableDigitalAsset",
+  "sourceName": "@lukso/lsp8-contracts/contracts/LSP8IdentifiableDigitalAsset.sol",
   "abi": [
     {
       "inputs": [],
@@ -58,69 +58,129 @@
     {
       "inputs": [
         {
-          "internalType": "address",
-          "name": "tokenOwner",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "authorizedAmount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "operator",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "LSP7AmountExceedsAuthorizedAmount",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "balance",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "tokenOwner",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "LSP7AmountExceedsBalance",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
           "internalType": "uint256",
           "name": "callIndex",
           "type": "uint256"
         }
       ],
-      "name": "LSP7BatchCallFailed",
+      "name": "LSP8BatchCallFailed",
       "type": "error"
     },
     {
       "inputs": [],
-      "name": "LSP7CannotSendWithAddressZero",
+      "name": "LSP8CannotSendToAddressZero",
       "type": "error"
     },
     {
       "inputs": [],
-      "name": "LSP7CannotUseAddressZeroAsOperator",
+      "name": "LSP8CannotUseAddressZeroAsOperator",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "LSP8InvalidTransferBatch",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "LSP8NonExistentTokenId",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "LSP8NonExistingOperator",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        }
+      ],
+      "name": "LSP8NotTokenOperator",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        }
+      ],
+      "name": "LSP8NotTokenOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenReceiver",
+          "type": "address"
+        }
+      ],
+      "name": "LSP8NotifyTokenReceiverContractMissingLSP1Interface",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenReceiver",
+          "type": "address"
+        }
+      ],
+      "name": "LSP8NotifyTokenReceiverIsEOA",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "LSP8OperatorAlreadyAuthorized",
       "type": "error"
     },
     {
@@ -136,75 +196,58 @@
           "type": "address"
         },
         {
-          "internalType": "address",
-          "name": "operator",
-          "type": "address"
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
         }
       ],
-      "name": "LSP7DecreaseAllowanceNotAuthorized",
+      "name": "LSP8RevokeOperatorNotAuthorized",
       "type": "error"
     },
     {
       "inputs": [],
-      "name": "LSP7DecreasedAllowanceBelowZero",
+      "name": "LSP8TokenContractCannotHoldValue",
       "type": "error"
     },
     {
       "inputs": [],
-      "name": "LSP7InvalidTransferBatch",
+      "name": "LSP8TokenIdFormatNotEditable",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "LSP8TokenIdsDataEmptyArray",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "LSP8TokenIdsDataLengthMismatch",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "LSP8TokenOwnerCannotBeOperator",
       "type": "error"
     },
     {
       "inputs": [
         {
-          "internalType": "address",
-          "name": "tokenReceiver",
-          "type": "address"
-        }
-      ],
-      "name": "LSP7NotifyTokenReceiverContractMissingLSP1Interface",
-      "type": "error"
-    },
-    {
-      "inputs": [
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
+        },
         {
           "internalType": "address",
-          "name": "tokenReceiver",
-          "type": "address"
-        }
-      ],
-      "name": "LSP7NotifyTokenReceiverIsEOA",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "caller",
+          "name": "oldOwner",
           "type": "address"
         },
         {
           "internalType": "address",
-          "name": "tokenOwner",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "operator",
+          "name": "newOwner",
           "type": "address"
         }
       ],
-      "name": "LSP7RevokeOperatorNotAuthorized",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "LSP7TokenContractCannotHoldValue",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "LSP7TokenOwnerCannotBeOperator",
+      "name": "LSP8TokenOwnerChanged",
       "type": "error"
     },
     {
@@ -216,17 +259,6 @@
         }
       ],
       "name": "NoExtensionFoundForFunctionSelector",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "operator",
-          "type": "address"
-        }
-      ],
-      "name": "OperatorAllowanceCannotBeIncreasedFromZero",
       "type": "error"
     },
     {
@@ -270,9 +302,9 @@
         },
         {
           "indexed": true,
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
         },
         {
           "indexed": false,
@@ -301,6 +333,12 @@
         },
         {
           "indexed": true,
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
           "internalType": "bool",
           "name": "notified",
           "type": "bool"
@@ -339,6 +377,31 @@
       "inputs": [
         {
           "indexed": true,
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "dataKey",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "dataValue",
+          "type": "bytes"
+        }
+      ],
+      "name": "TokenIdDataChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
           "internalType": "address",
           "name": "operator",
           "type": "address"
@@ -356,10 +419,10 @@
           "type": "address"
         },
         {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
         },
         {
           "indexed": false,
@@ -389,9 +452,9 @@
           "type": "address"
         },
         {
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
         },
         {
           "internalType": "bytes",
@@ -402,30 +465,6 @@
       "name": "authorizeOperator",
       "outputs": [],
       "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "operator",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "tokenOwner",
-          "type": "address"
-        }
-      ],
-      "name": "authorizedAmountFor",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -463,47 +502,6 @@
           "type": "bytes[]"
         }
       ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "decimals",
-      "outputs": [
-        {
-          "internalType": "uint8",
-          "name": "",
-          "type": "uint8"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "operator",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "tokenOwner",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "subtractedAmount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "bytes",
-          "name": "operatorNotificationData",
-          "type": "bytes"
-        }
-      ],
-      "name": "decreaseAllowance",
-      "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     },
@@ -548,9 +546,57 @@
     {
       "inputs": [
         {
-          "internalType": "address",
-          "name": "tokenOwner",
-          "type": "address"
+          "internalType": "bytes32[]",
+          "name": "tokenIds",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "dataKeys",
+          "type": "bytes32[]"
+        }
+      ],
+      "name": "getDataBatchForTokenIds",
+      "outputs": [
+        {
+          "internalType": "bytes[]",
+          "name": "dataValues",
+          "type": "bytes[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "dataKey",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getDataForTokenId",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "dataValue",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
         }
       ],
       "name": "getOperatorsOf",
@@ -572,19 +618,20 @@
           "type": "address"
         },
         {
-          "internalType": "uint256",
-          "name": "addedAmount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "bytes",
-          "name": "operatorNotificationData",
-          "type": "bytes"
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
         }
       ],
-      "name": "increaseAllowance",
-      "outputs": [],
-      "stateMutability": "nonpayable",
+      "name": "isOperatorFor",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -615,9 +662,9 @@
           "type": "address"
         },
         {
-          "internalType": "address",
-          "name": "tokenOwner",
-          "type": "address"
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
         },
         {
           "internalType": "bool",
@@ -674,6 +721,52 @@
     {
       "inputs": [
         {
+          "internalType": "bytes32[]",
+          "name": "tokenIds",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "dataKeys",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "bytes[]",
+          "name": "dataValues",
+          "type": "bytes[]"
+        }
+      ],
+      "name": "setDataBatchForTokenIds",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "dataKey",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "dataValue",
+          "type": "bytes"
+        }
+      ],
+      "name": "setDataForTokenId",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "bytes4",
           "name": "interfaceId",
           "type": "bytes4"
@@ -685,6 +778,44 @@
           "internalType": "bool",
           "name": "",
           "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenOwner",
+          "type": "address"
+        }
+      ],
+      "name": "tokenIdsOf",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "tokenOwnerOf",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
         }
       ],
       "stateMutability": "view",
@@ -716,9 +847,9 @@
           "type": "address"
         },
         {
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
         },
         {
           "internalType": "bool",
@@ -749,9 +880,9 @@
           "type": "address[]"
         },
         {
-          "internalType": "uint256[]",
-          "name": "amount",
-          "type": "uint256[]"
+          "internalType": "bytes32[]",
+          "name": "tokenId",
+          "type": "bytes32[]"
         },
         {
           "internalType": "bool[]",

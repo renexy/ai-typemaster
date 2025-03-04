@@ -1,10 +1,10 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\work\\lukso-ama\\contracts\\ama.sol": {
-      "lastModificationDate": 1740682464455,
-      "contentHash": "2f3f3046884147635a1451d8a8831e05",
-      "sourceName": "contracts/ama.sol",
+    "C:\\work\\lukso\\luksoType\\contracts\\typingGae.sol": {
+      "lastModificationDate": 1741121401498,
+      "contentHash": "721d622c07cb9b9b16dcad9da30e87f1",
+      "sourceName": "contracts/typingGae.sol",
       "solcConfig": {
         "version": "0.8.19",
         "settings": {
@@ -29,19 +29,54 @@
         }
       },
       "imports": [
-        "@lukso/lsp7-contracts/contracts/LSP7DigitalAsset.sol"
+        "@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol"
       ],
       "versionPragmas": [
         "^0.8.19"
       ],
       "artifacts": [
-        "SimpleAMA"
+        "TypingLeaderboardNFT"
       ]
     },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp7-contracts\\contracts\\LSP7DigitalAsset.sol": {
-      "lastModificationDate": 1740567177969,
-      "contentHash": "06a4ec7940e54c7c10eac66b34b494bd",
-      "sourceName": "@lukso/lsp7-contracts/contracts/LSP7DigitalAsset.sol",
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp-smart-contracts\\contracts\\LSP8IdentifiableDigitalAsset\\LSP8IdentifiableDigitalAsset.sol": {
+      "lastModificationDate": 1740827941656,
+      "contentHash": "efac4be48b8e39bf40145ee62190e7f9",
+      "sourceName": "@lukso/lsp-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@lukso/lsp8-contracts/contracts/LSP8IdentifiableDigitalAsset.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.12"
+      ],
+      "artifacts": []
+    },
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp8-contracts\\contracts\\LSP8IdentifiableDigitalAsset.sol": {
+      "lastModificationDate": 1740827933741,
+      "contentHash": "cd552011f4607348435f79f6d2d80134",
+      "sourceName": "@lukso/lsp8-contracts/contracts/LSP8IdentifiableDigitalAsset.sol",
       "solcConfig": {
         "version": "0.8.19",
         "settings": {
@@ -67,63 +102,28 @@
       },
       "imports": [
         "@lukso/lsp1-contracts/contracts/ILSP1UniversalReceiver.sol",
-        "./ILSP7DigitalAsset.sol",
-        "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
-        "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol",
+        "./ILSP8IdentifiableDigitalAsset.sol",
         "@lukso/lsp4-contracts/contracts/LSP4DigitalAssetMetadata.sol",
         "@lukso/lsp17contractextension-contracts/contracts/LSP17Extendable.sol",
+        "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
+        "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol",
         "@lukso/lsp1-contracts/contracts/LSP1Utils.sol",
         "@lukso/lsp2-contracts/contracts/LSP2Utils.sol",
         "@lukso/lsp1-contracts/contracts/LSP1Constants.sol",
         "@lukso/lsp17contractextension-contracts/contracts/LSP17Constants.sol",
-        "./LSP7Constants.sol",
+        "./LSP8Constants.sol",
         "@lukso/lsp17contractextension-contracts/contracts/LSP17Errors.sol",
-        "./LSP7Errors.sol"
+        "./LSP8Errors.sol"
       ],
       "versionPragmas": [
-        "^0.8.4"
+        "^0.8.12"
       ],
       "artifacts": [
-        "LSP7DigitalAsset"
+        "LSP8IdentifiableDigitalAsset"
       ]
     },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp7-contracts\\contracts\\ILSP7DigitalAsset.sol": {
-      "lastModificationDate": 1740567176946,
-      "contentHash": "639f16e094f7a7619fb989545152c12d",
-      "sourceName": "@lukso/lsp7-contracts/contracts/ILSP7DigitalAsset.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.4"
-      ],
-      "artifacts": [
-        "ILSP7DigitalAsset"
-      ]
-    },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp1-contracts\\contracts\\ILSP1UniversalReceiver.sol": {
-      "lastModificationDate": 1740567172502,
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp1-contracts\\contracts\\ILSP1UniversalReceiver.sol": {
+      "lastModificationDate": 1740827928712,
       "contentHash": "efac73021a2a01b396fc02aa175312ab",
       "sourceName": "@lukso/lsp1-contracts/contracts/ILSP1UniversalReceiver.sol",
       "solcConfig": {
@@ -157,81 +157,8 @@
         "ILSP1UniversalReceiver"
       ]
     },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp1-contracts\\contracts\\LSP1Constants.sol": {
-      "lastModificationDate": 1740567173311,
-      "contentHash": "3d197cbf8dfaf3168ba789677ad629d8",
-      "sourceName": "@lukso/lsp1-contracts/contracts/LSP1Constants.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.4"
-      ],
-      "artifacts": []
-    },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp1-contracts\\contracts\\LSP1Utils.sol": {
-      "lastModificationDate": 1740567173564,
-      "contentHash": "025db80350e8669c866a9e1bd910483f",
-      "sourceName": "@lukso/lsp1-contracts/contracts/LSP1Utils.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol",
-        "@lukso/lsp2-contracts/contracts/LSP2Utils.sol",
-        "./ILSP1UniversalReceiver.sol",
-        "./LSP1Constants.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.4"
-      ],
-      "artifacts": [
-        "LSP1Utils"
-      ]
-    },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp17contractextension-contracts\\contracts\\LSP17Extendable.sol": {
-      "lastModificationDate": 1740567173308,
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp17contractextension-contracts\\contracts\\LSP17Extendable.sol": {
+      "lastModificationDate": 1740827929325,
       "contentHash": "bd6287b123b940709d155c59e8953b69",
       "sourceName": "@lukso/lsp17contractextension-contracts/contracts/LSP17Extendable.sol",
       "solcConfig": {
@@ -270,76 +197,10 @@
         "LSP17Extendable"
       ]
     },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp17contractextension-contracts\\contracts\\LSP17Errors.sol": {
-      "lastModificationDate": 1740567172834,
-      "contentHash": "7fe9e0b598b58937834590a09fc71782",
-      "sourceName": "@lukso/lsp17contractextension-contracts/contracts/LSP17Errors.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.4"
-      ],
-      "artifacts": []
-    },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp7-contracts\\contracts\\LSP7Constants.sol": {
-      "lastModificationDate": 1740567177805,
-      "contentHash": "6c188a1baccf307d85ca41c5e30c4fd3",
-      "sourceName": "@lukso/lsp7-contracts/contracts/LSP7Constants.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.4"
-      ],
-      "artifacts": []
-    },
-    "C:\\work\\lukso-ama\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165Checker.sol": {
-      "lastModificationDate": 1740567189070,
-      "contentHash": "0a66857c4a2223ad54b814ea56470c97",
-      "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol",
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp1-contracts\\contracts\\LSP1Utils.sol": {
+      "lastModificationDate": 1740827929499,
+      "contentHash": "025db80350e8669c866a9e1bd910483f",
+      "sourceName": "@lukso/lsp1-contracts/contracts/LSP1Utils.sol",
       "solcConfig": {
         "version": "0.8.19",
         "settings": {
@@ -364,19 +225,22 @@
         }
       },
       "imports": [
-        "./IERC165.sol"
+        "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol",
+        "@lukso/lsp2-contracts/contracts/LSP2Utils.sol",
+        "./ILSP1UniversalReceiver.sol",
+        "./LSP1Constants.sol"
       ],
       "versionPragmas": [
-        "^0.8.0"
+        "^0.8.4"
       ],
       "artifacts": [
-        "ERC165Checker"
+        "LSP1Utils"
       ]
     },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp17contractextension-contracts\\contracts\\LSP17Constants.sol": {
-      "lastModificationDate": 1740567172494,
-      "contentHash": "c8057e52ed8ae01bab945e4951177d46",
-      "sourceName": "@lukso/lsp17contractextension-contracts/contracts/LSP17Constants.sol",
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp1-contracts\\contracts\\LSP1Constants.sol": {
+      "lastModificationDate": 1740827929325,
+      "contentHash": "3d197cbf8dfaf3168ba789677ad629d8",
+      "sourceName": "@lukso/lsp1-contracts/contracts/LSP1Constants.sol",
       "solcConfig": {
         "version": "0.8.19",
         "settings": {
@@ -406,41 +270,8 @@
       ],
       "artifacts": []
     },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp7-contracts\\contracts\\LSP7Errors.sol": {
-      "lastModificationDate": 1740567178242,
-      "contentHash": "f8e8a35a95e4eaa0bcc0f776c1437ee0",
-      "sourceName": "@lukso/lsp7-contracts/contracts/LSP7Errors.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.4"
-      ],
-      "artifacts": []
-    },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp2-contracts\\contracts\\LSP2Utils.sol": {
-      "lastModificationDate": 1740567172022,
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp2-contracts\\contracts\\LSP2Utils.sol": {
+      "lastModificationDate": 1740827928481,
       "contentHash": "931e9e5118dc88dcc9eaed1967bf2032",
       "sourceName": "@lukso/lsp2-contracts/contracts/LSP2Utils.sol",
       "solcConfig": {
@@ -476,8 +307,8 @@
         "LSP2Utils"
       ]
     },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp4-contracts\\contracts\\LSP4DigitalAssetMetadata.sol": {
-      "lastModificationDate": 1740567172907,
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp4-contracts\\contracts\\LSP4DigitalAssetMetadata.sol": {
+      "lastModificationDate": 1740827929126,
       "contentHash": "2db0cd0bcca9a0330566cbfefd521798",
       "sourceName": "@lukso/lsp4-contracts/contracts/LSP4DigitalAssetMetadata.sol",
       "solcConfig": {
@@ -515,8 +346,146 @@
         "LSP4DigitalAssetMetadata"
       ]
     },
-    "C:\\work\\lukso-ama\\node_modules\\@openzeppelin\\contracts\\utils\\structs\\EnumerableSet.sol": {
-      "lastModificationDate": 1740567188725,
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp17contractextension-contracts\\contracts\\LSP17Errors.sol": {
+      "lastModificationDate": 1740827928932,
+      "contentHash": "7fe9e0b598b58937834590a09fc71782",
+      "sourceName": "@lukso/lsp17contractextension-contracts/contracts/LSP17Errors.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": []
+    },
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp8-contracts\\contracts\\ILSP8IdentifiableDigitalAsset.sol": {
+      "lastModificationDate": 1740827932491,
+      "contentHash": "ebd1b0ac2001191fff57c45eae0e623e",
+      "sourceName": "@lukso/lsp8-contracts/contracts/ILSP8IdentifiableDigitalAsset.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "ILSP8IdentifiableDigitalAsset"
+      ]
+    },
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp17contractextension-contracts\\contracts\\LSP17Constants.sol": {
+      "lastModificationDate": 1740827928712,
+      "contentHash": "c8057e52ed8ae01bab945e4951177d46",
+      "sourceName": "@lukso/lsp17contractextension-contracts/contracts/LSP17Constants.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": []
+    },
+    "C:\\work\\lukso\\luksoType\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165Checker.sol": {
+      "lastModificationDate": 1740827941523,
+      "contentHash": "0a66857c4a2223ad54b814ea56470c97",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC165Checker"
+      ]
+    },
+    "C:\\work\\lukso\\luksoType\\node_modules\\@openzeppelin\\contracts\\utils\\structs\\EnumerableSet.sol": {
+      "lastModificationDate": 1740827941292,
       "contentHash": "e029f029abc1fd2d85d54fd69086f076",
       "sourceName": "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
       "solcConfig": {
@@ -550,10 +519,10 @@
         "EnumerableSet"
       ]
     },
-    "C:\\work\\lukso-ama\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
-      "lastModificationDate": 1740567191175,
-      "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
-      "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp8-contracts\\contracts\\LSP8Errors.sol": {
+      "lastModificationDate": 1740827933596,
+      "contentHash": "470579428e700e54bf65ba1148204e5b",
+      "sourceName": "@lukso/lsp8-contracts/contracts/LSP8Errors.sol",
       "solcConfig": {
         "version": "0.8.19",
         "settings": {
@@ -579,16 +548,14 @@
       },
       "imports": [],
       "versionPragmas": [
-        "^0.8.0"
+        "^0.8.4"
       ],
-      "artifacts": [
-        "IERC165"
-      ]
+      "artifacts": []
     },
-    "C:\\work\\lukso-ama\\node_modules\\@erc725\\smart-contracts\\contracts\\interfaces\\IERC725Y.sol": {
-      "lastModificationDate": 1740567177396,
-      "contentHash": "0f2878cc98fb0bc8838faef702816d2e",
-      "sourceName": "@erc725/smart-contracts/contracts/interfaces/IERC725Y.sol",
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp8-contracts\\contracts\\LSP8Constants.sol": {
+      "lastModificationDate": 1740827933334,
+      "contentHash": "876b5e8576ea1addc2ff8ba5665dfe03",
+      "sourceName": "@lukso/lsp8-contracts/contracts/LSP8Constants.sol",
       "solcConfig": {
         "version": "0.8.19",
         "settings": {
@@ -612,18 +579,14 @@
           }
         }
       },
-      "imports": [
-        "@openzeppelin/contracts/utils/introspection/IERC165.sol"
-      ],
+      "imports": [],
       "versionPragmas": [
-        "^0.8.0"
+        "^0.8.4"
       ],
-      "artifacts": [
-        "IERC725Y"
-      ]
+      "artifacts": []
     },
-    "C:\\work\\lukso-ama\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
-      "lastModificationDate": 1740567189045,
+    "C:\\work\\lukso\\luksoType\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
+      "lastModificationDate": 1740827941506,
       "contentHash": "0e7db055ce108f9da7bb6686a00287c0",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
@@ -659,8 +622,80 @@
         "ERC165"
       ]
     },
-    "C:\\work\\lukso-ama\\node_modules\\@erc725\\smart-contracts-v8\\contracts\\ERC725Y.sol": {
-      "lastModificationDate": 1740567176250,
+    "C:\\work\\lukso\\luksoType\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
+      "lastModificationDate": 1740827943040,
+      "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC165"
+      ]
+    },
+    "C:\\work\\lukso\\luksoType\\node_modules\\@erc725\\smart-contracts\\contracts\\interfaces\\IERC725Y.sol": {
+      "lastModificationDate": 1740827932217,
+      "contentHash": "0f2878cc98fb0bc8838faef702816d2e",
+      "sourceName": "@erc725/smart-contracts/contracts/interfaces/IERC725Y.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC725Y"
+      ]
+    },
+    "C:\\work\\lukso\\luksoType\\node_modules\\@erc725\\smart-contracts-v8\\contracts\\ERC725Y.sol": {
+      "lastModificationDate": 1740827931164,
       "contentHash": "6532e3a63eb5f96537abf68e61b835fe",
       "sourceName": "@erc725/smart-contracts-v8/contracts/ERC725Y.sol",
       "solcConfig": {
@@ -700,41 +735,8 @@
         "ERC725Y"
       ]
     },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp4-contracts\\contracts\\LSP4Constants.sol": {
-      "lastModificationDate": 1740567172595,
-      "contentHash": "dde251b9e77b57cfc1652420eba2fbce",
-      "sourceName": "@lukso/lsp4-contracts/contracts/LSP4Constants.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.4"
-      ],
-      "artifacts": []
-    },
-    "C:\\work\\lukso-ama\\node_modules\\@lukso\\lsp4-contracts\\contracts\\LSP4Errors.sol": {
-      "lastModificationDate": 1740567173562,
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp4-contracts\\contracts\\LSP4Errors.sol": {
+      "lastModificationDate": 1740827929499,
       "contentHash": "8004c18df6f503fc01d518d2b8d36372",
       "sourceName": "@lukso/lsp4-contracts/contracts/LSP4Errors.sol",
       "solcConfig": {
@@ -766,8 +768,41 @@
       ],
       "artifacts": []
     },
-    "C:\\work\\lukso-ama\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
-      "lastModificationDate": 1740567192056,
+    "C:\\work\\lukso\\luksoType\\node_modules\\@lukso\\lsp4-contracts\\contracts\\LSP4Constants.sol": {
+      "lastModificationDate": 1740827928779,
+      "contentHash": "dde251b9e77b57cfc1652420eba2fbce",
+      "sourceName": "@lukso/lsp4-contracts/contracts/LSP4Constants.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": []
+    },
+    "C:\\work\\lukso\\luksoType\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
+      "lastModificationDate": 1740827943849,
       "contentHash": "5a20b2cad87ddb61c7a3a6af21289e28",
       "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
@@ -803,41 +838,8 @@
         "Ownable"
       ]
     },
-    "C:\\work\\lukso-ama\\node_modules\\@erc725\\smart-contracts-v8\\contracts\\constants.sol": {
-      "lastModificationDate": 1740567174481,
-      "contentHash": "267010d3a21981b84ef1fe13ab217465",
-      "sourceName": "@erc725/smart-contracts-v8/contracts/constants.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": []
-    },
-    "C:\\work\\lukso-ama\\node_modules\\@erc725\\smart-contracts-v8\\contracts\\errors.sol": {
-      "lastModificationDate": 1740567176838,
+    "C:\\work\\lukso\\luksoType\\node_modules\\@erc725\\smart-contracts-v8\\contracts\\errors.sol": {
+      "lastModificationDate": 1740827931706,
       "contentHash": "7398b6293059b9abd66abc1993063e3d",
       "sourceName": "@erc725/smart-contracts-v8/contracts/errors.sol",
       "solcConfig": {
@@ -869,8 +871,8 @@
       ],
       "artifacts": []
     },
-    "C:\\work\\lukso-ama\\node_modules\\@erc725\\smart-contracts-v8\\contracts\\interfaces\\IERC725Y.sol": {
-      "lastModificationDate": 1740567177201,
+    "C:\\work\\lukso\\luksoType\\node_modules\\@erc725\\smart-contracts-v8\\contracts\\interfaces\\IERC725Y.sol": {
+      "lastModificationDate": 1740827932049,
       "contentHash": "8edf1671037d9c01b72f11d2a26b5143",
       "sourceName": "@erc725/smart-contracts-v8/contracts/interfaces/IERC725Y.sol",
       "solcConfig": {
@@ -904,8 +906,41 @@
         "IERC725Y"
       ]
     },
-    "C:\\work\\lukso-ama\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1740567188127,
+    "C:\\work\\lukso\\luksoType\\node_modules\\@erc725\\smart-contracts-v8\\contracts\\constants.sol": {
+      "lastModificationDate": 1740827930113,
+      "contentHash": "267010d3a21981b84ef1fe13ab217465",
+      "sourceName": "@erc725/smart-contracts-v8/contracts/constants.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": []
+    },
+    "C:\\work\\lukso\\luksoType\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1740827940780,
       "contentHash": "f07feb4a44b1a4872370da5aa70e8e46",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {

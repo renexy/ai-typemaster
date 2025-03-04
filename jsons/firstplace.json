@@ -1,0 +1,39 @@
+{
+    "LSP4Metadata": {
+        "name": "Typing game rewards",
+        "description": "NFT rewards for reaching the #1 on the ladder!",
+        "links": [
+            {
+                "title": "Twitter",
+                "url": "https://x.com/Kolleger4"
+            }
+        ],
+        "icon": [
+            {
+                "width": 1280,
+                "height": 720,
+                "url": "ipfs://bafkreihntyhxluginbk3tz5vddxfxiodzsesvbzlkffsiplwuja2l6l7k4",
+                "verification": {
+                    "method": "keccak256(bytes)",
+                    "data": "7af8df4da8a80f1a202c5850f9450e0fecb4eec88eafca182da1ada4de81685e"
+                }
+            }
+        ],
+        "images": [ 
+            [
+                {
+                    "width": 1280,
+                    "height": 720,
+                    "url": "ipfs://bafkreihntyhxluginbk3tz5vddxfxiodzsesvbzlkffsiplwuja2l6l7k4",
+                    "verification": {
+                        "method": "keccak256(bytes)",
+                        "data": "7af8df4da8a80f1a202c5850f9450e0fecb4eec88eafca182da1ada4de81685e"
+                    }
+                }
+            ]
+        ],
+        "assets": [ ],
+        "attributes": [
+        ]
+    }
+}

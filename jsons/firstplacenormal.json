@@ -1,0 +1,11 @@
+{
+    "name": "First Place - Normal Difficulty",
+    "description": "Awarded for achieving the highest score in Normal Difficulty.",
+    "image": "ipfs://bafkreiae6xoltvqj7uztoo6k6h4q3dcwo6ak2xu5llpm2spazlpgkkxgtu", 
+    "attributes": [
+      {
+        "trait_type": "Difficulty",
+        "value": "Normal"
+      }
+    ]
+  }

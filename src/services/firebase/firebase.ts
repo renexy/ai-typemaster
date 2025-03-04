@@ -63,3 +63,23 @@ export const saveHighScore = async (
     throw error;
   }
 };
+
+export const getAllHighScores = async () => {
+  try {
+    const scoresRef = collection(db, "highscores");
+    const querySnapshot = await getDocs(scoresRef);
+
+    if (!querySnapshot.empty) {
+      const highScores = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      return highScores; // Return an array of high score objects
+    }
+    return []; // Return an empty array if no scores are found
+  } catch (error) {
+    console.error("Error retrieving high scores:", error);
+    throw error;
+  }
+};
+

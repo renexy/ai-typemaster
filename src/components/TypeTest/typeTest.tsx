@@ -12,6 +12,7 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useTypingTest } from "./typeTest.hooks";
 import { useUpProvider } from "../../services/providers/UPProvider";
+import Leaderboard from "../LeaderBoard.tsx/leaderBoard";
 
 export const TypeTest = ({
   difficulty,
@@ -31,9 +32,18 @@ export const TypeTest = ({
     handleTyping,
     resetTest,
     inputDisabled,
-    checkHighscores
+    checkHighscores,
+    showLeaderboard,
   } = useTypingTest(text, difficulty);
   const { accounts } = useUpProvider();
+
+  if (showLeaderboard) {
+    return (
+      <div className="bg-white bg-opacity-95 shadow-lg p-8 rounded-xl h-[800px] w-[600px] relative flex flex-col animate-fadeInSlideUp">
+        <Leaderboard></Leaderboard>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white bg-opacity-95 shadow-lg p-8 rounded-xl h-[auto] w-[500px] relative flex flex-col animate-fadeInSlideUp">

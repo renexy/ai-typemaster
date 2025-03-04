@@ -1,73 +1,96 @@
 
-import hardhat from "hardhat";
-const { ethers } = hardhat;
+import abi from "../artifacts/contracts/typingGae.sol/TypingLeaderboardNFT.json" with { type: "json" }
+import { ERC725 } from '@erc725/erc725.js';
+import metadataJson from "../jsons/collectionMetadata.json" with { type: "json" }
+// import { ethers } from "ethers";
 
-async function main() {
-    const deployerAddress = "0x6eeE943FD6314C7Ef86D2F78DeF6f0452EBB4dc8";
-    console.log("Deploying contracts with the address:", deployerAddress);
-
-    const profileOwnerAddress = deployerAddress;
-
-    const SimpleAMA = await ethers.getContractFactory("SimpleAMA");
-
-    const simpleAMA = await SimpleAMA.deploy(profileOwnerAddress);
-    console.log("SimpleAMA contract deployed to:", simpleAMA);
+async function main() { 
+    try {
+        const TypingLeaderboardNFT = await ethers.getContractFactory(
+            "TypingLeaderboardNFT"
+          );
+        
+          const typingLeaderboardNFT = await TypingLeaderboardNFT.deploy(
+            "TypingLeaderboardNFT",
+            "TLNFT",
+            process.env.LUKSO_PUBLIC_KEY,
+            1,
+            0,
+            "mySecret123"
+          );
+          console.log("TypingLeaderboardNFT contract deployed to:", typingLeaderboardNFT);
+    } catch (err) {
+        console.log(err, 'lol');
+    }
 }
 
-// async function checkDeployment() {
-//     // Replace with the deployed contract address
-//     const contractAddress = "0x61d397d2c872F521c0A0BCD13d1cb31ec2c8Bc05";
+async function setCollectionMetadata() {
+  const provider = new ethers.JsonRpcProvider("https://rpc.testnet.lukso.network");
+  const wallet = new ethers.Wallet("0x43361a4e65f999bb2fe735d873f393763a931121a4f4ee4d775e8a3cd228a34a", provider);
+  const universalProfileAddress = "0x61d397d2c872F521c0A0BCD13d1cb31ec2c8Bc05";
 
-//     const contract = await ethers.getContractAt("SimpleAMA", contractAddress);
+  
+  const ABI = [
+    "function execute(uint256 operationType, address target, uint256 value, bytes calldata data) external returns (bytes)"
+  ];
 
-//     const balance = await ethers.provider.getBalance(contractAddress);
+  const universalProfile = new ethers.Contract(
+    universalProfileAddress,
+    ABI,
+    wallet
+  );
 
-//     // Check the contract's balance (for example)
-//     console.log(`Balance of contract ETH ${balance}`);
-// }
+  const lsp8Contract = new ethers.Contract(
+    process.env.VITE_LUKSO_CONTRACT_ADDRESS,
+    abi.abi,
+    universalProfile
+  );
 
-// checkDeployment()
-//     .then(() => process.exit(0))
-//     .catch((error) => {
-//         console.error(error);
-//         process.exit(1);
-//     });
+  const schema = [
+    {
+      name: 'LSP4Metadata',
+      key: '0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e',
+      keyType: 'Singleton',
+      valueType: 'bytes',
+      valueContent: 'VerifiableURI',
+    },
+  ];
 
-    // async function interactWithContract() {
-    //     // Get the contract instance
-    //     const SimpleAMA = await ethers.getContractFactory("SimpleAMA");
-    //     const contract = await SimpleAMA.attach("0x61d397d2c872F521c0A0BCD13d1cb31ec2c8Bc05");
-    
-    //     // Interact with the contract: Call claimFreeToken
-    //     const [deployer] = await ethers.getSigners();
-    //     console.log("Claiming free token for:", deployer.address);
-    //     const hasClaimed = await contract.hasReceivedToken(deployer.address);
-    //     console.log(`Has claimed free token: ${hasClaimed}`);
-    
-    //     // Call claimFreeToken
-    //     const claimTx = await contract.claimFreeToken();
-    //     console.log("Claim transaction:", claimTx.hash);
-    
-    //     // Wait for the transaction to be mined
-    //     await claimTx.wait();
-    //     console.log("Claimed free token!");
-    
-    //     // Now, let's check the public questions
-    //     const publicQuestions = await contract.getPublicQuestions();
-    //     console.log("Public questions:", publicQuestions);
-    // }
-    
-    // interactWithContract()
-    //     .then(() => process.exit(0))
-    //     .catch((error) => {
-    //         console.error(error);
-    //         process.exit(1);
-    //     });
+  const erc725 = new ERC725(schema);
+
+  const encodedData = erc725.encodeData([
+    {
+      keyName: 'LSP4Metadata',
+      value: {
+        json: metadataJson,
+        url: "ipfs://bafkreiegzm55gle3yn6hnbehqhb5zpm37bc7722daubusaey6ukaqywg4a",
+      },
+    },
+  ]);
+
+  // Encode the setData function call
+  const setDataInterface = new ethers.Interface([
+    "function setData(bytes32 key, bytes value) external"
+  ]);
+  const setDataData = setDataInterface.encodeFunctionData("setData", [
+    encodedData.keys[0],
+    encodedData.values[0]
+  ]);
+
+  // Call execute on the Universal Profile
+  const tx = await universalProfile.execute(
+    0, // CALL operation
+    process.env.VITE_LUKSO_CONTRACT_ADDRESS, // target contract
+    0, // value (0 ETH)
+    setDataData // encoded setData call
+  );
+  await tx.wait();
+}
+
 
 main()
-    .then(() => process.exit(0))
-    .catch((error) => {
-        console.error(error);
-        process.exit(1);
-    });
-
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });

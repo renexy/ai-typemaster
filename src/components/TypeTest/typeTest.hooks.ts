@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import toast from "react-hot-toast";
 import { useUpProvider } from "../../services/providers/UPProvider";
 import { saveHighScore } from "../../services/firebase/firebase";
+import { authorizeTokens, claimTokenForProfile } from "../../services/web3/Interactions";
 
 interface UseTypingTestReturn {
   typed: string;
@@ -14,10 +15,12 @@ interface UseTypingTestReturn {
   resetTest: () => void;
   inputDisabled: boolean;
   checkHighscores: () => void;
+  showLeaderboard: boolean;
 }
 
 export const useTypingTest = (targetText: string, difficulty: string): UseTypingTestReturn => {
-  const { accounts } = useUpProvider();
+  const { accounts, client, chainId } = useUpProvider();
+  const [showLeaderboard, setShowLeaderboard] = useState<boolean>(false);
   const [typed, setTyped] = useState("");
   const [startTime, setStartTime] = useState<number | null>(null);
   const [timer, setTimer] = useState(0);
@@ -25,6 +28,17 @@ export const useTypingTest = (targetText: string, difficulty: string): UseTyping
   const [wpm, setWPM] = useState(0);
   const [accuracy, setAccuracy] = useState(100);
   const [inputDisabled, setInputDisabled] = useState<boolean>(false);
+
+  // useEffect(() => {
+  //   if (!accounts || accounts.length < 1) return
+
+  //   const test = async() => {
+  //    const x = await claimTokenForProfile(client, accounts[0], chainId)
+  //    console.log(x, 'lol!');
+  //   }
+
+  //   test();
+  // }, [accounts])
 
   // Helper function to normalize text
   const normalizeText = (text: string) => {
@@ -102,6 +116,7 @@ export const useTypingTest = (targetText: string, difficulty: string): UseTyping
     try { 
       const result = 
       await saveHighScore({wpm: wpm, highScore: +(Math.pow(wpm, 2) * Math.log(timer + 1)).toFixed(0), time: timer, difficulty: difficulty}, accounts[0])
+      setShowLeaderboard(true)
 
       toast.success(result.message)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -130,6 +145,7 @@ export const useTypingTest = (targetText: string, difficulty: string): UseTyping
     handleTyping,
     resetTest,
     inputDisabled,
-    checkHighscores
+    checkHighscores,
+    showLeaderboard
   };
 };
