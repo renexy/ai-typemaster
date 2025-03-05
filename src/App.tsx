@@ -11,9 +11,9 @@ function App() {
   const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard" | "">(
     ""
   );
-  const [ready, setReady] = useState<boolean>(true);
+  const [ready, setReady] = useState<boolean>(false);
   const [typingText, setTypingText] = useState<string>("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [showLeaderboard, setShowLeaderboard] = useState<boolean>(false);
 
   useEffect(() => {
