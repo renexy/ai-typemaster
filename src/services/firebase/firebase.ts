@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -44,8 +45,8 @@ export const saveHighScore = async (
       }));
 
       const existingScore = scores.find(
-        (s) => s.difficulty === score.difficulty
-      );
+        (s: any) => s.difficulty === score.difficulty
+      ) as any;
 
       if (existingScore) {
         if (score.highScore > existingScore.highScore) {
@@ -109,8 +110,8 @@ export const getDifficultyHighscores = async (
         ...doc.data(),
       }));
       const filteredResults = highScores
-        .filter((h) => h.difficulty === difficulty)
-        .sort((a, b) => b.highScore - a.highScore);
+        .filter((h: any) => h.difficulty === difficulty)
+        .sort((a: any, b: any) => b.highScore - a.highScore);
       return filteredResults; // Return an array of high score objects
     }
     return []; // Return an empty array if no scores are found

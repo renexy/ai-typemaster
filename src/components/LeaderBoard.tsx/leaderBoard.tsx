@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
 import {
   Tabs,
@@ -26,33 +27,33 @@ function Leaderboard({ triggerLeaderboard }: any) {
 
   useEffect(() => {
     const fetchScores = async () => {
-      const fetchedScores = await getAllHighScores();
+      const fetchedScores = await getAllHighScores() as any;
 
       setEasyScores(
         fetchedScores
-          .filter((score) => score.difficulty === "easy")
-          .sort((a, b) => b.highScore - a.highScore)
+          .filter((score: any) => score.difficulty === "easy")
+          .sort((a: any, b: any) => b.highScore - a.highScore)
       );
       setNormalScores(
         fetchedScores
-          .filter((score) => score.difficulty === "medium")
-          .sort((a, b) => b.highScore - a.highScore)
+          .filter((score: any) => score.difficulty === "medium")
+          .sort((a: any, b: any) => b.highScore - a.highScore)
       );
       setHardScores(
         fetchedScores
-          .filter((score) => score.difficulty === "hard")
-          .sort((a, b) => b.highScore - a.highScore)
+          .filter((score: any) => score.difficulty === "hard")
+          .sort((a: any, b: any) => b.highScore - a.highScore)
       );
     };
 
     fetchScores();
   }, []);
 
-  const handleTabChange = (event, newValue) => {
+  const handleTabChange = (event: any, newValue: any) => {
     setTabValue(newValue);
   };
 
-  const renderTable = (scores) => (
+  const renderTable = (scores: any) => (
     <TableContainer component={Paper} sx={{ width: "100%" }} color="secondary">
       <Table sx={{ width: "100%" }} color="secondary">
         <TableHead color="secondary">
@@ -100,7 +101,7 @@ function Leaderboard({ triggerLeaderboard }: any) {
           </TableRow>
         </TableHead>
         <TableBody color="secondary">
-          {scores.map((score, index) => (
+          {scores.map((score: any, index: number) => (
             <TableRow key={score.walletAddress} color="secondary">
               <TableCell color="secondary">
                 <Typography variant="body1" sx={{ color: "#4F5882" }}>
