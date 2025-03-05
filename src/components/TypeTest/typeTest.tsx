@@ -13,7 +13,7 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useTypingTest } from "./typeTest.hooks";
 import { useUpProvider } from "../../services/providers/UPProvider";
-import NFTWon from "../NftWon/NftWon";
+import NFTWon from "../nftWon";
 
 export const TypeTest = ({
   difficulty,

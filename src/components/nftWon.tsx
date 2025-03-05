@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import { motion } from "framer-motion";
-import easyImg from "../../assets/easy.png";
-import normalImg from "../../assets/normal.png";
-import hardImg from "../../assets/hard.png";
+import easyImg from "../assets/easy.png";
+import normalImg from "../assets/normal.png";
+import hardImg from "../assets/hard.png";
 
 const difficultyImages: Record<string, string> = {
   easy: easyImg,
