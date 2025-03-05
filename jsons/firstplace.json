@@ -1,7 +1,7 @@
 {
     "LSP4Metadata": {
-        "name": "Typing game rewards",
-        "description": "NFT rewards for reaching the #1 on the ladder!",
+        "name": "First place! Easy!",
+        "description": "NFT for reaching #1 on the easy ladder!",
         "links": [
             {
                 "title": "Twitter",
@@ -12,10 +12,10 @@
             {
                 "width": 1280,
                 "height": 720,
-                "url": "ipfs://bafkreihntyhxluginbk3tz5vddxfxiodzsesvbzlkffsiplwuja2l6l7k4",
+                "url": "ipfs://bafkreicbcj2bwbmw2whuogdrdallzu6rxfwmb2we4whqhvh5yixikqqwku",
                 "verification": {
                     "method": "keccak256(bytes)",
-                    "data": "7af8df4da8a80f1a202c5850f9450e0fecb4eec88eafca182da1ada4de81685e"
+                    "data": "437a6254d1dedaa76ff6ed23d4f5fc27288b9b4b586a8c3bb2cb9088924d01f9"
                 }
             }
         ],
@@ -24,10 +24,10 @@
                 {
                     "width": 1280,
                     "height": 720,
-                    "url": "ipfs://bafkreihntyhxluginbk3tz5vddxfxiodzsesvbzlkffsiplwuja2l6l7k4",
+                    "url": "ipfs://bafkreicbcj2bwbmw2whuogdrdallzu6rxfwmb2we4whqhvh5yixikqqwku",
                     "verification": {
                         "method": "keccak256(bytes)",
-                        "data": "7af8df4da8a80f1a202c5850f9450e0fecb4eec88eafca182da1ada4de81685e"
+                        "data": "437a6254d1dedaa76ff6ed23d4f5fc27288b9b4b586a8c3bb2cb9088924d01f9"
                     }
                 }
             ]

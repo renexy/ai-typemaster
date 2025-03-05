@@ -61,14 +61,12 @@ contract TypingLeaderboardNFT is LSP8IdentifiableDigitalAsset {
         // Initialize the leaderboards and mint NFTs for each difficulty
         for (uint8 i = 0; i < 3; i++) {
             Difficulty diff = Difficulty(i);
-            bytes32 tokenId = keccak256(
-                abi.encodePacked(diff, FIRST_PLACE_NFT)
-            );
-            allowTransfer[tokenId] = true;
+            uint256 tokenId = i + 1;
+            allowTransfer[bytes32(tokenId)] = true;
 
             // Mint the "First Place NFT" for each difficulty, initially to the contract owner
-            _mint(newOwner_, tokenId, true, "Initial First Place NFT");
-            allowTransfer[tokenId] = false;
+            _mint(newOwner_, bytes32(tokenId), true, "Initial First Place NFT");
+            allowTransfer[bytes32(tokenId)] = false;
             topScorers[diff] = Leader(newOwner_, 0);
             hasFirstPlaceNFT[newOwner_][diff] = true;
         }
@@ -89,9 +87,8 @@ contract TypingLeaderboardNFT is LSP8IdentifiableDigitalAsset {
         require(score > leader.score, "Not the highest score");
 
         address previousPlayer = leader.player;
-        bytes32 tokenId = keccak256(
-            abi.encodePacked(difficulty, FIRST_PLACE_NFT)
-        );
+        
+        bytes32 tokenId = bytes32(uint256(difficulty) + 1);
 
         // If the player is the current leader, just update their score
         if (previousPlayer == msg.sender) {

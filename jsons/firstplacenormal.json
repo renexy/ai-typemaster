@@ -1,11 +1,39 @@
 {
-    "name": "First Place - Normal Difficulty",
-    "description": "Awarded for achieving the highest score in Normal Difficulty.",
-    "image": "ipfs://bafkreiae6xoltvqj7uztoo6k6h4q3dcwo6ak2xu5llpm2spazlpgkkxgtu", 
-    "attributes": [
-      {
-        "trait_type": "Difficulty",
-        "value": "Normal"
-      }
-    ]
+  "LSP4Metadata": {
+      "name": "First place! Normal!",
+      "description": "NFT for reaching #1 on the normal ladder!",
+      "links": [
+          {
+              "title": "Twitter",
+              "url": "https://x.com/Kolleger4"
+          }
+      ],
+      "icon": [
+          {
+              "width": 1280,
+              "height": 720,
+              "url": "ipfs://bafkreiae6xoltvqj7uztoo6k6h4q3dcwo6ak2xu5llpm2spazlpgkkxgtu",
+              "verification": {
+                  "method": "keccak256(bytes)",
+                  "data": "e06b805129d837af4c34c62569c30057f65f3404bcaf54efcb029885f22c8e73"
+              }
+          }
+      ],
+      "images": [ 
+          [
+              {
+                  "width": 1280,
+                  "height": 720,
+                  "url": "ipfs://bafkreiae6xoltvqj7uztoo6k6h4q3dcwo6ak2xu5llpm2spazlpgkkxgtu",
+                  "verification": {
+                      "method": "keccak256(bytes)",
+                      "data": "e06b805129d837af4c34c62569c30057f65f3404bcaf54efcb029885f22c8e73"
+                  }
+              }
+          ]
+      ],
+      "assets": [ ],
+      "attributes": [
+      ]
   }
+}

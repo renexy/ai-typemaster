@@ -1,11 +1,39 @@
 {
-    "name": "First Place - Hard Difficulty",
-    "description": "Awarded for achieving the highest score in Hard Difficulty.",
-    "image": "ipfs://bafkreie6puhyhupkhmw4umxcdb2snoibumx2yqlhp2ywg5aqc67nuxpixm", 
-    "attributes": [
-      {
-        "trait_type": "Difficulty",
-        "value": "Hard"
-      }
-    ]
+  "LSP4Metadata": {
+      "name": "First place! Hard!",
+      "description": "NFT for reaching #1 on the hard ladder!",
+      "links": [
+          {
+              "title": "Twitter",
+              "url": "https://x.com/Kolleger4"
+          }
+      ],
+      "icon": [
+          {
+              "width": 1280,
+              "height": 720,
+              "url": "ipfs://bafkreie6puhyhupkhmw4umxcdb2snoibumx2yqlhp2ywg5aqc67nuxpixm",
+              "verification": {
+                  "method": "keccak256(bytes)",
+                  "data": "39c07cc366d987a0ac63e9a7ff693e7b5f37d7bfd758ea4ebcb61b1b23220813"
+              }
+          }
+      ],
+      "images": [ 
+          [
+              {
+                  "width": 1280,
+                  "height": 720,
+                  "url": "ipfs://bafkreie6puhyhupkhmw4umxcdb2snoibumx2yqlhp2ywg5aqc67nuxpixm",
+                  "verification": {
+                      "method": "keccak256(bytes)",
+                      "data": "39c07cc366d987a0ac63e9a7ff693e7b5f37d7bfd758ea4ebcb61b1b23220813"
+                  }
+              }
+          ]
+      ],
+      "assets": [ ],
+      "attributes": [
+      ]
   }
+}

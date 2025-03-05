@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\work\\lukso\\luksoType\\contracts\\typingGae.sol": {
-      "lastModificationDate": 1741176012661,
-      "contentHash": "738d3949ac651b5953d6817b5523e7e0",
+      "lastModificationDate": 1741180932540,
+      "contentHash": "66c77a7ff48b11fce6389de95a4a6089",
       "sourceName": "contracts/typingGae.sol",
       "solcConfig": {
         "version": "0.8.19",
