@@ -90,16 +90,18 @@ export const useTypingTest = (
       const normalizedTarget = normalizeText(targetText);
 
       if (normalizedTyped === normalizedTarget) {
-        if (wpm === 0 || wpm > 160) {
-          window.location.reload();
-          return;
-        }
         setIsCompleted(true);
         setInputDisabled(true);
       }
     },
     [startTime, calculateMetrics, targetText]
   );
+
+  useEffect(() => {
+    if (isCompleted && (wpm === 0 || wpm > 160)) {
+      window.location.reload();
+    }
+  }, [isCompleted, wpm]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
