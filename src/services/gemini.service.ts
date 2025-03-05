@@ -28,11 +28,11 @@ const getPromptForDifficulty = (difficulty: 'easy' | 'medium' | 'hard'): string 
   
   switch (difficulty) {
     case 'easy':
-      return `${basePrompt} easy to type with simple words, common punctuation, and around 15-20 words. Use basic vocabulary and short sentences. DO NOT REPLY WITH ANYTHING ELSE OTHER THAN THE TEST PARAGAPH`;
+      return `${basePrompt} easy to type with simple words, common punctuation, and around 15-20 words. Use basic vocabulary and short sentences. DO NOT REPLY WITH ANYTHING ELSE OTHER THAN THE TEST PARAGAPH! ALSO AVOID ANY SPECIAL CHARACTERS, JUST USE COMMA, DOT AND EXCLAMATIION MARK AND QUESTION MARK`;
     case 'medium':
-      return `${basePrompt} moderately challenging with mixed vocabulary, standard punctuation, and around 25-30 words. Include some compound sentences. DO NOT REPLY WITH ANYTHING ELSE OTHER THAN THE TEST PARAGAPH`;
+      return `${basePrompt} moderately challenging with mixed vocabulary, standard punctuation, and around 25-30 words. Include some compound sentences. DO NOT REPLY WITH ANYTHING ELSE OTHER THAN THE TEST PARAGAPH! ALSO AVOID ANY SPECIAL CHARACTERS, JUST USE COMMA, DOT AND EXCLAMATIION MARK AND QUESTION MARK`;
     case 'hard':
-      return `${basePrompt} challenging with complex vocabulary, varied punctuation, and around 35-40 words. Include compound-complex sentences and sophisticated vocabulary. DO NOT REPLY WITH ANYTHING ELSE OTHER THAN THE TEST PARAGAPH`;
+      return `${basePrompt} challenging with complex vocabulary, varied punctuation, and around 35-40 words. Include compound-complex sentences and sophisticated vocabulary. DO NOT REPLY WITH ANYTHING ELSE OTHER THAN THE TEST PARAGAPH! ALSO AVOID ANY SPECIAL CHARACTERS, JUST USE COMMA, DOT AND EXCLAMATIION MARK AND QUESTION MARK`;
   }
 };
 

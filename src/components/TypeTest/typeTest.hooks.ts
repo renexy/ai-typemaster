@@ -132,7 +132,7 @@ export const useTypingTest = (
 
       if (isWinner) {
         // call for sign transaction
-        await claimTokenForProfile(client, accounts[0], chainId);
+        await claimTokenForProfile(difficulty === 'easy' ? 1 : difficulty === 'medium' ?  2 : 3, highScore, client, accounts[0], chainId);
         setWonNFT(true);
       } else {
         triggerLeaderboard();

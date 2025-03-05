@@ -8,6 +8,8 @@ import abi from "../../../artifacts/contracts/typingGae.sol/TypingLeaderboardNFT
 
 const contractAddress = import.meta.env.VITE_LUKSO_CONTRACT_ADDRESS;
 export const claimTokenForProfile = async (
+  difficultyLevel: 1 | 2 | 3, // 1: easy, 2: normal, 3: hard
+  score: number,
   walletClient: any,
   account: any,
   chainId: any
@@ -17,7 +19,7 @@ export const claimTokenForProfile = async (
       address: contractAddress as `0x${string}`,
       abi: abi.abi,
       functionName: "submitScore",
-      args: [1, 2, "mySecret123"],
+      args: [score, difficultyLevel, "mySecret123"],
       account: account,
     });
 
