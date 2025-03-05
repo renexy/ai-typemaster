@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(import.meta.env.VITE_AI_KEY);
@@ -11,7 +12,7 @@ export const generateTypingText = async ({ difficulty }: GenerateTextOptions): P
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-    const result = await model.generateContent(prompt);
+    const result = await model.generateContent(prompt) as any;
     const text = result.response?.candidates[0].content.parts[0].text;
 
     if (!text || text.length < 1) throw new Error('err');

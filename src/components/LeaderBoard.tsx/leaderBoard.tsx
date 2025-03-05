@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import {
   Tabs,
   Tab,
@@ -49,7 +49,7 @@ function Leaderboard({ triggerLeaderboard }: any) {
     fetchScores();
   }, []);
 
-  const handleTabChange = (event: any, newValue: any) => {
+  const handleTabChange = (_: any, newValue: any) => {
     setTabValue(newValue);
   };
 

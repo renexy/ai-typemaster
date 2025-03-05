@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useCallback } from "react";
 import toast from "react-hot-toast";
@@ -39,17 +40,6 @@ export const useTypingTest = (
   const [inputDisabled, setInputDisabled] = useState<boolean>(false);
   const [loadingScores, setLoadingScores] = useState<boolean>(false);
   const [wonNFT, setWonNFT] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   if (!accounts || accounts.length < 1) return
-
-  //   const test = async() => {
-  //    const x = await claimTokenForProfile(client, accounts[0], chainId)
-  //    console.log(x, 'lol!');
-  //   }
-
-  //   test();
-  // }, [accounts])
 
   // Helper function to normalize text
   const normalizeText = (text: string) => {
@@ -127,8 +117,8 @@ export const useTypingTest = (
     try {
       setLoadingScores(true);
       const highScore = +(Math.pow(wpm, 2) * Math.log(timer + 1)).toFixed(0);
-      
-      const res = await getDifficultyHighscores(difficulty);
+
+      const res = (await getDifficultyHighscores(difficulty)) as any;
       const isWinner = res.length < 1 || highScore > res[0].highScore;
       const result = await saveHighScore(
         { wpm: wpm, highScore: highScore, time: timer, difficulty: difficulty },
@@ -139,18 +129,16 @@ export const useTypingTest = (
       } else {
         toast.error(result.message);
       }
-      
+
       if (isWinner) {
         // call for sign transaction
         await claimTokenForProfile(client, accounts[0], chainId);
-        setWonNFT(true)
+        setWonNFT(true);
       } else {
         triggerLeaderboard();
       }
 
-      setLoadingScores(false)
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      setLoadingScores(false);
     } catch (err: any) {
       console.error(err);
       toast.error("Failed to save score");
@@ -178,6 +166,6 @@ export const useTypingTest = (
     inputDisabled,
     checkHighscores,
     loadingScores,
-    wonNFT
+    wonNFT,
   };
 };
