@@ -89,12 +89,11 @@ export const useTypingTest = (
       const normalizedTyped = normalizeText(value);
       const normalizedTarget = normalizeText(targetText);
 
-      if (wpm === 0 || wpm > 160) {
-        window.location.reload();
-        return;
-      }
-
       if (normalizedTyped === normalizedTarget) {
+        if (wpm === 0 || wpm > 160) {
+          window.location.reload();
+          return;
+        }
         setIsCompleted(true);
         setInputDisabled(true);
       }
@@ -137,7 +136,13 @@ export const useTypingTest = (
 
       if (isWinner) {
         // call for sign transaction
-        await claimTokenForProfile(difficulty === 'easy' ? 0 : difficulty === 'medium' ?  1 : 2, highScore, client, accounts[0], chainId);
+        await claimTokenForProfile(
+          difficulty === "easy" ? 0 : difficulty === "medium" ? 1 : 2,
+          highScore,
+          client,
+          accounts[0],
+          chainId
+        );
         setWonNFT(true);
       } else {
         triggerLeaderboard();
