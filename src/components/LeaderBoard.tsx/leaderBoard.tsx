@@ -10,14 +10,19 @@ import {
   TableRow,
   Paper,
   Typography,
+  IconButton,
 } from "@mui/material";
 import { getAllHighScores } from "../../services/firebase/firebase";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useUpProvider } from "../../services/providers/UPProvider";
 
-function Leaderboard() {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function Leaderboard({ triggerLeaderboard }: any) {
   const [tabValue, setTabValue] = useState(0);
   const [easyScores, setEasyScores] = useState([]);
   const [normalScores, setNormalScores] = useState([]);
   const [hardScores, setHardScores] = useState([]);
+  const { accounts } = useUpProvider();
 
   useEffect(() => {
     const fetchScores = async () => {
@@ -71,9 +76,25 @@ function Leaderboard() {
             <TableCell color="secondary">
               <Typography
                 variant="button"
-                sx={{ color: "#4F5882", fontWeight: "bold"}}
+                sx={{ color: "#4F5882", fontWeight: "bold" }}
               >
                 Score
+              </Typography>
+            </TableCell>
+            <TableCell color="secondary">
+              <Typography
+                variant="button"
+                sx={{ color: "#4F5882", fontWeight: "bold" }}
+              >
+                WPM
+              </Typography>
+            </TableCell>
+            <TableCell color="secondary">
+              <Typography
+                variant="button"
+                sx={{ color: "#4F5882", fontWeight: "bold" }}
+              >
+                Time
               </Typography>
             </TableCell>
           </TableRow>
@@ -82,27 +103,44 @@ function Leaderboard() {
           {scores.map((score, index) => (
             <TableRow key={score.walletAddress} color="secondary">
               <TableCell color="secondary">
-                <Typography
-                  variant="body1"
-                  sx={{ color: "#4F5882" }}
-                >
+                <Typography variant="body1" sx={{ color: "#4F5882" }}>
                   {index + 1}
                 </Typography>
               </TableCell>
-              <TableCell color="secondary">
+              <TableCell>
                 <Typography
                   variant="body1"
-                  sx={{ color: "#4F5882" }}
+                  color="secondary"
+                  className={`cursor-pointer underline ${
+                    accounts &&
+                    accounts.length > 0 &&
+                    accounts[0] === score.walletAddress &&
+                    "text-[#F69799]"
+                  }`}
                 >
-                  {score.walletAddress.substring(0, 3) + '...' + score.walletAddress.substring(score.walletAddress.length, score.walletAddres.length-3)}
+                  {score.walletAddress
+                    ? `${score.walletAddress.substring(
+                        0,
+                        4
+                      )}...${score.walletAddress.substring(
+                        score.walletAddress.length - 3
+                      )}`
+                    : "no address"}
                 </Typography>
               </TableCell>
               <TableCell color="secondary">
-                <Typography
-                  variant="body1"
-                  sx={{ color: "#4F5882" }}
-                >
+                <Typography variant="body1" sx={{ color: "#4F5882" }}>
                   {score.highScore}
+                </Typography>
+              </TableCell>
+              <TableCell color="secondary">
+                <Typography variant="body1" sx={{ color: "#4F5882" }}>
+                  {score.wpm}
+                </Typography>
+              </TableCell>
+              <TableCell color="secondary">
+                <Typography variant="body1" sx={{ color: "#4F5882" }}>
+                  {score.time}s
                 </Typography>
               </TableCell>
             </TableRow>
@@ -114,15 +152,23 @@ function Leaderboard() {
 
   return (
     <>
+      <div className="flex items-start gap-2">
+        <IconButton color="secondary" size="small" onClick={triggerLeaderboard}>
+          <ArrowBackIcon />
+        </IconButton>
+        <Typography variant="h5" sx={{ color: "#4F5882", fontWeight: 600 }}>
+          Back
+        </Typography>
+      </div>
       <Tabs
         value={tabValue}
         color="secondary"
         onChange={handleTabChange}
         aria-label="difficulty tabs"
       >
-        <Tab label="Easy" color="secondary" />
-        <Tab label="Normal" color="secondary" />
-        <Tab label="Hard" color="secondary" />
+        <Tab label="Easy" color="secondary" sx={{ color: "#4caf50" }} />
+        <Tab label="Normal" color="secondary" sx={{ color: "#ff9800" }} />
+        <Tab label="Hard" color="secondary" sx={{ color: "#f44336" }} />
       </Tabs>
 
       {tabValue === 0 && renderTable(easyScores)}

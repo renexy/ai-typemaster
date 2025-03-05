@@ -20,6 +20,7 @@ contract TypingLeaderboardNFT is LSP8IdentifiableDigitalAsset {
 
     bytes32 private constant FIRST_PLACE_NFT = keccak256("FIRST_PLACE_NFT");
     bytes32 private immutable secretHash;
+    mapping(bytes32 => bool) private allowTransfer;
     address public immutable contractOwner;
 
     event ScoreUpdated(
@@ -63,9 +64,11 @@ contract TypingLeaderboardNFT is LSP8IdentifiableDigitalAsset {
             bytes32 tokenId = keccak256(
                 abi.encodePacked(diff, FIRST_PLACE_NFT)
             );
+            allowTransfer[tokenId] = true;
 
             // Mint the "First Place NFT" for each difficulty, initially to the contract owner
             _mint(newOwner_, tokenId, true, "Initial First Place NFT");
+            allowTransfer[tokenId] = false;
             topScorers[diff] = Leader(newOwner_, 0);
             hasFirstPlaceNFT[newOwner_][diff] = true;
         }
@@ -76,14 +79,14 @@ contract TypingLeaderboardNFT is LSP8IdentifiableDigitalAsset {
         Difficulty difficulty,
         string memory secretCode
     ) external {
-        // Validate secret code
+        // Validate secret code -- this will be done with backend later on, just didn't have time to implement it
         require(
             keccak256(abi.encodePacked(secretCode)) == secretHash,
             "Invalid secret code"
         );
 
         Leader storage leader = topScorers[difficulty];
-        require(score >= leader.score, "Not the highest score");
+        require(score > leader.score, "Not the highest score");
 
         address previousPlayer = leader.player;
         bytes32 tokenId = keccak256(
@@ -96,13 +99,14 @@ contract TypingLeaderboardNFT is LSP8IdentifiableDigitalAsset {
             emit ScoreUpdated(difficulty, msg.sender, score);
             return;
         }
-
+        allowTransfer[tokenId] = true;
         if (hasFirstPlaceNFT[previousPlayer][difficulty]) {
             // transfer from the address from the previous player
             _transfer(previousPlayer, msg.sender, tokenId, true, "");
         } else {
             _transfer(contractOwner, msg.sender, tokenId, true, "");
         }
+        allowTransfer[tokenId] = false;
 
         // Update the leaderboard
         leader.player = msg.sender;
@@ -122,7 +126,17 @@ contract TypingLeaderboardNFT is LSP8IdentifiableDigitalAsset {
         bool skipCheck,
         bytes memory data
     ) internal override {
-        
-            super._transfer(from, to, tokenId, skipCheck, data);
+        super._transfer(from, to, tokenId, skipCheck, data);
+    }
+
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        bytes32 tokenId,
+        bool skipCheck,
+        bytes memory data
+    ) internal override {
+        require(allowTransfer[tokenId], "Transfers are restricted");
+        super._beforeTokenTransfer(from, to, tokenId, skipCheck, data);
     }
 }

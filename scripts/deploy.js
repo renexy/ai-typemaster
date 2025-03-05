@@ -11,7 +11,7 @@ async function main() {
           );
         
           const typingLeaderboardNFT = await TypingLeaderboardNFT.deploy(
-            "TypingLeaderboardNFT",
+            "Typing leaderboard",
             "TLNFT",
             process.env.LUKSO_PUBLIC_KEY,
             1,

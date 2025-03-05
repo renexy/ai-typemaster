@@ -1,5 +1,5 @@
 module.exports = [
-  "TypingLeaderboardNFT", // name_
+  "Typing leaderboard", // name_
   "TLNFT", // symbol_
   process.env.LUKSO_PUBLIC_KEY, // newOwner_
   1, // lsp4TokenType_ (NFT)

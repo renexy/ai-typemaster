@@ -4,15 +4,17 @@ import { CircularProgress } from "@mui/material";
 import { useUpProvider } from "./services/providers/UPProvider";
 import { BeginTest } from "./components/BeginTest/beginTest";
 import { TypeTest } from "./components/TypeTest/typeTest";
+import Leaderboard from "./components/LeaderBoard.tsx/leaderBoard";
 
 function App() {
   const { contextAccounts } = useUpProvider();
-  const [difficulty, setDifficulty] = useState<
-    "easy" | "medium" | "hard" | ""
-  >("");
+  const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard" | "">(
+    ""
+  );
   const [ready, setReady] = useState<boolean>(false);
   const [typingText, setTypingText] = useState<string>("");
   const [loading, setLoading] = useState(false);
+  const [showLeaderboard, setShowLeaderboard] = useState<boolean>(false);
 
   useEffect(() => {
     if (contextAccounts && contextAccounts.length > 0) setReady(true);
@@ -55,8 +57,21 @@ function App() {
     );
   }
 
+  if (showLeaderboard) {
+    return (
+      <div className="bg-white bg-opacity-95 shadow-lg p-6 gap-8 rounded-xl h-[600px] w-[600px] relative flex flex-col animate-fadeInSlideUp">
+        <Leaderboard triggerLeaderboard={() => setShowLeaderboard(false)} />
+      </div>
+    );
+  }
+
   if (!difficulty && ready) {
-    return <BeginTest onSelectDifficulty={setDifficulty} />;
+    return (
+      <BeginTest
+        onSelectDifficulty={setDifficulty}
+        triggerLeaderboard={() => setShowLeaderboard(true)}
+      />
+    );
   }
 
   return (
@@ -64,6 +79,7 @@ function App() {
       difficulty={difficulty}
       setDifficulty={setDifficulty}
       text={typingText}
+      triggerLeaderboard={() => setShowLeaderboard(true)}
     />
   );
 }

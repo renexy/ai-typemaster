@@ -38,18 +38,31 @@ export const saveHighScore = async (
     const querySnapshot = await getDocs(q);
 
     if (!querySnapshot.empty) {
-      const existingScore = querySnapshot.docs[0];
-      if (score.highScore > existingScore.data().highScore) {
-        await updateDoc(doc(db, "highscores", existingScore.id), {
-          ...score,
-          timestamp: new Date(),
-        });
-        return { message: "High score updated!", code: "UPDATED" };
+      const scores = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      const existingScore = scores.find(
+        (s) => s.difficulty === score.difficulty
+      );
+
+      if (existingScore) {
+        if (score.highScore > existingScore.highScore) {
+          await updateDoc(doc(db, "highscores", existingScore.id), {
+            ...score,
+            timestamp: new Date(),
+          });
+          return { message: "High score updated!", code: "UPDATED" };
+        } else {
+          return {
+            message: `Your highest score is: ${
+              existingScore.highScore
+            }.`,
+            code: "SCORE_LOWER",
+          };
+        }
       }
-      return {
-        message: `Your highest score is: ${existingScore.data().highScore}.`,
-        code: "SCORE_LOWER",
-      };
     }
 
     await addDoc(scoresRef, {
@@ -57,7 +70,7 @@ export const saveHighScore = async (
       walletAddress,
       timestamp: new Date(),
     });
-    return { message: "Score updated!" };
+    return { message: "Score updated!", code: "UPDATED" };
   } catch (error) {
     console.error("Error saving score:", error);
     throw error;
@@ -83,3 +96,26 @@ export const getAllHighScores = async () => {
   }
 };
 
+export const getDifficultyHighscores = async (
+  difficulty: "easy" | "medium" | "hard" | ""
+) => {
+  try {
+    const scoresRef = collection(db, "highscores");
+    const querySnapshot = await getDocs(scoresRef);
+
+    if (!querySnapshot.empty) {
+      const highScores = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      const filteredResults = highScores
+        .filter((h) => h.difficulty === difficulty)
+        .sort((a, b) => b.highScore - a.highScore);
+      return filteredResults; // Return an array of high score objects
+    }
+    return []; // Return an empty array if no scores are found
+  } catch (error) {
+    console.error("Error retrieving high scores:", error);
+    throw error;
+  }
+};

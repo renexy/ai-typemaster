@@ -7,21 +7,24 @@ import {
   CardContent,
   Button,
   Box,
+  CircularProgress,
 } from "@mui/material";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useTypingTest } from "./typeTest.hooks";
 import { useUpProvider } from "../../services/providers/UPProvider";
-import Leaderboard from "../LeaderBoard.tsx/leaderBoard";
+import NFTWon from "../NftWon/NftWon";
 
 export const TypeTest = ({
   difficulty,
   setDifficulty,
   text,
+  triggerLeaderboard,
 }: {
   difficulty: "easy" | "medium" | "hard" | "";
   setDifficulty: (difficulty: "easy" | "medium" | "hard" | "") => void;
   text: string;
+  triggerLeaderboard: () => void;
 }) => {
   const {
     typed,
@@ -33,14 +36,24 @@ export const TypeTest = ({
     resetTest,
     inputDisabled,
     checkHighscores,
-    showLeaderboard,
-  } = useTypingTest(text, difficulty);
+    loadingScores,
+    wonNFT,
+  } = useTypingTest(text, difficulty, triggerLeaderboard);
   const { accounts } = useUpProvider();
 
-  if (showLeaderboard) {
+  if (loadingScores) {
     return (
-      <div className="bg-white bg-opacity-95 shadow-lg p-8 rounded-xl h-[800px] w-[600px] relative flex flex-col animate-fadeInSlideUp">
-        <Leaderboard></Leaderboard>
+      <div className="bg-white bg-opacity-95 shadow-lg p-8 rounded-xl h-[600px] w-[500px] relative flex flex-col items-center justify-center animate-fadeInSlideUp">
+        <CircularProgress color="secondary" />
+        <p className="mt-4 text-[#4F5882]">Loading high scores....</p>
+      </div>
+    );
+  }
+
+  if (wonNFT) {
+    return (
+      <div className="bg-white bg-opacity-95 shadow-lg p-8 rounded-xl h-[600px] w-[500px] relative flex flex-col items-center justify-center animate-fadeInSlideUp">
+        <NFTWon difficulty={difficulty}/>
       </div>
     );
   }
@@ -204,7 +217,7 @@ export const TypeTest = ({
             onClick={checkHighscores}
           >
             <Typography variant="caption" sx={{ fontWeight: 600 }}>
-              Submit high score!
+              Check & Submit high score!
             </Typography>
           </Button>
         )}

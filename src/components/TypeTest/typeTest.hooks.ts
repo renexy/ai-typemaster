@@ -2,8 +2,11 @@
 import { useState, useEffect, useCallback } from "react";
 import toast from "react-hot-toast";
 import { useUpProvider } from "../../services/providers/UPProvider";
-import { saveHighScore } from "../../services/firebase/firebase";
-import { authorizeTokens, claimTokenForProfile } from "../../services/web3/Interactions";
+import {
+  getDifficultyHighscores,
+  saveHighScore,
+} from "../../services/firebase/firebase";
+import { claimTokenForProfile } from "../../services/web3/Interactions";
 
 interface UseTypingTestReturn {
   typed: string;
@@ -15,12 +18,18 @@ interface UseTypingTestReturn {
   resetTest: () => void;
   inputDisabled: boolean;
   checkHighscores: () => void;
-  showLeaderboard: boolean;
+  triggerLeaderboard?: () => void;
+  loadingScores: boolean;
+  wonNFT: boolean;
 }
 
-export const useTypingTest = (targetText: string, difficulty: string): UseTypingTestReturn => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const useTypingTest = (
+  targetText: string,
+  difficulty: "easy" | "medium" | "hard" | "",
+  triggerLeaderboard: any
+): UseTypingTestReturn => {
   const { accounts, client, chainId } = useUpProvider();
-  const [showLeaderboard, setShowLeaderboard] = useState<boolean>(false);
   const [typed, setTyped] = useState("");
   const [startTime, setStartTime] = useState<number | null>(null);
   const [timer, setTimer] = useState(0);
@@ -28,6 +37,8 @@ export const useTypingTest = (targetText: string, difficulty: string): UseTyping
   const [wpm, setWPM] = useState(0);
   const [accuracy, setAccuracy] = useState(100);
   const [inputDisabled, setInputDisabled] = useState<boolean>(false);
+  const [loadingScores, setLoadingScores] = useState<boolean>(false);
+  const [wonNFT, setWonNFT] = useState<boolean>(false);
 
   // useEffect(() => {
   //   if (!accounts || accounts.length < 1) return
@@ -99,26 +110,46 @@ export const useTypingTest = (targetText: string, difficulty: string): UseTyping
   useEffect(() => {
     let interval: NodeJS.Timeout;
     let counter = 0; // Internal counter to track time
-  
+
     if (startTime && !isCompleted) {
       interval = setInterval(() => {
         counter += 0.1; // Increment by 0.1 seconds
         setTimer(Number(counter.toFixed(1))); // Set with 1 decimal place
       }, 100); // Update every 100ms
     }
-  
+
     return () => {
       if (interval) clearInterval(interval);
     };
   }, [startTime, isCompleted]);
 
   const checkHighscores = async () => {
-    try { 
-      const result = 
-      await saveHighScore({wpm: wpm, highScore: +(Math.pow(wpm, 2) * Math.log(timer + 1)).toFixed(0), time: timer, difficulty: difficulty}, accounts[0])
-      setShowLeaderboard(true)
+    try {
+      setLoadingScores(true);
+      const highScore = +(Math.pow(wpm, 2) * Math.log(timer + 1)).toFixed(0);
+      
+      const res = await getDifficultyHighscores(difficulty);
+      const isWinner = res.length < 1 || highScore > res[0].highScore;
+      const result = await saveHighScore(
+        { wpm: wpm, highScore: highScore, time: timer, difficulty: difficulty },
+        accounts[0]
+      );
+      if (result.code === "UPDATED") {
+        toast.success(result.message);
+      } else {
+        toast.error(result.message);
+      }
+      
+      if (isWinner) {
+        // call for sign transaction
+        await claimTokenForProfile(client, accounts[0], chainId);
+        setWonNFT(true)
+      } else {
+        triggerLeaderboard();
+      }
 
-      toast.success(result.message)
+      setLoadingScores(false)
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error(err);
@@ -146,6 +177,7 @@ export const useTypingTest = (targetText: string, difficulty: string): UseTyping
     resetTest,
     inputDisabled,
     checkHighscores,
-    showLeaderboard
+    loadingScores,
+    wonNFT
   };
 };
