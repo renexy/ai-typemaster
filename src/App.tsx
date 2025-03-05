@@ -11,9 +11,9 @@ function App() {
   const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard" | "">(
     ""
   );
-  const [ready, setReady] = useState<boolean>(false);
+  const [ready, setReady] = useState<boolean>(true);
   const [typingText, setTypingText] = useState<string>("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [showLeaderboard, setShowLeaderboard] = useState<boolean>(false);
 
   useEffect(() => {
@@ -77,7 +77,7 @@ function App() {
   return (
     <TypeTest
       difficulty={difficulty}
-      setDifficulty={setDifficulty}
+      setDifficulty={() => setDifficulty("")}
       text={typingText}
       triggerLeaderboard={() => setShowLeaderboard(true)}
     />

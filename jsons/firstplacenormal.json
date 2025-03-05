@@ -15,7 +15,7 @@
               "url": "ipfs://bafkreiae6xoltvqj7uztoo6k6h4q3dcwo6ak2xu5llpm2spazlpgkkxgtu",
               "verification": {
                   "method": "keccak256(bytes)",
-                  "data": "e06b805129d837af4c34c62569c30057f65f3404bcaf54efcb029885f22c8e73"
+                  "data": "0xe06b805129d837af4c34c62569c30057f65f3404bcaf54efcb029885f22c8e73"
               }
           }
       ],
@@ -27,7 +27,7 @@
                   "url": "ipfs://bafkreiae6xoltvqj7uztoo6k6h4q3dcwo6ak2xu5llpm2spazlpgkkxgtu",
                   "verification": {
                       "method": "keccak256(bytes)",
-                      "data": "e06b805129d837af4c34c62569c30057f65f3404bcaf54efcb029885f22c8e73"
+                      "data": "0xe06b805129d837af4c34c62569c30057f65f3404bcaf54efcb029885f22c8e73"
                   }
               }
           ]

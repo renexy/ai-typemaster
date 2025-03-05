@@ -22,7 +22,7 @@ export const TypeTest = ({
   triggerLeaderboard,
 }: {
   difficulty: "easy" | "medium" | "hard" | "";
-  setDifficulty: (difficulty: "easy" | "medium" | "hard" | "") => void;
+  setDifficulty: () => void;
   text: string;
   triggerLeaderboard: () => void;
 }) => {
@@ -53,7 +53,7 @@ export const TypeTest = ({
   if (wonNFT) {
     return (
       <div className="bg-white bg-opacity-95 shadow-lg p-8 rounded-xl h-[600px] w-[500px] relative flex flex-col items-center justify-center animate-fadeInSlideUp">
-        <NFTWon difficulty={difficulty}/>
+        <NFTWon difficulty={difficulty} />
       </div>
     );
   }
@@ -62,11 +62,7 @@ export const TypeTest = ({
     <div className="bg-white bg-opacity-95 shadow-lg p-8 rounded-xl h-[auto] w-[500px] relative flex flex-col animate-fadeInSlideUp">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-2">
-          <IconButton
-            color="secondary"
-            size="small"
-            onClick={() => setDifficulty("")}
-          >
+          <IconButton color="secondary" size="small" onClick={setDifficulty}>
             <ArrowBackIcon />
           </IconButton>
           <Typography variant="h5" sx={{ color: "#4F5882", fontWeight: 600 }}>
@@ -97,7 +93,7 @@ export const TypeTest = ({
           >
             {difficulty}
           </Box>
-          <IconButton color="secondary" size="small" onClick={resetTest}>
+          <IconButton color="secondary" size="small" onClick={setDifficulty}>
             <RestartAltIcon />
           </IconButton>
         </div>

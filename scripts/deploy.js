@@ -3,33 +3,39 @@ import abi from "../artifacts/contracts/typingGae.sol/TypingLeaderboardNFT.json"
 import { ERC725 } from '@erc725/erc725.js';
 import metadataJson from "../jsons/collectionMetadata.json" with { type: "json" }
 import metadataJsonEasy from "../jsons/firstplace.json" with { type: "json" }
+import metadataJsonNormal from "../jsons/firstplacenormal.json" with { type: "json" }
+import metadataJsonHard from "../jsons/firstplacehard.json" with { type: "json" }
 import { ethers } from "ethers";
 
-async function main() { 
-    try {
-        const TypingLeaderboardNFT = await ethers.getContractFactory(
-            "TypingLeaderboardNFT"
-          );
+// async function main() { 
+//     try {
+//         const TypingLeaderboardNFT = await ethers.getContractFactory(
+//             "TypingLeaderboardNFT"
+//           );
         
-          const typingLeaderboardNFT = await TypingLeaderboardNFT.deploy(
-            "Typing leaderboard",
-            "TLNFT",
-            process.env.LUKSO_PUBLIC_KEY,
-            1,
-            0,
-            process.env.SECRET_KEY
-          );
-          console.log("TypingLeaderboardNFT contract deployed to:", typingLeaderboardNFT);
-    } catch (err) {
-        console.log(err, 'lol');
-    }
-}
+//           const typingLeaderboardNFT = await TypingLeaderboardNFT.deploy(
+//             "Typing leaderboard",
+//             "TLNFT",
+//             process.env.LUKSO_PUBLIC_KEY,
+//             1,
+//             0,
+//             process.env.SECRET_KEY
+//           );
+//           console.log("TypingLeaderboardNFT contract deployed to:", typingLeaderboardNFT);
+//     } catch (err) {
+//         console.log(err, 'lol');
+//     }
+// }
 
 async function setCollectionMetadata() {
-  const provider = new ethers.JsonRpcProvider("https://rpc.testnet.lukso.network");
-  const wallet = new ethers.Wallet("0x43361a4e65f999bb2fe735d873f393763a931121a4f4ee4d775e8a3cd228a34a", provider);
+  // const provider = new ethers.JsonRpcProvider("https://rpc.testnet.lukso.network");
+  const provider = new ethers.JsonRpcProvider("https://42.rpc.thirdweb.com", {
+  chainId: 42, // Use the correct chain ID for your network
+  name: "lukso", // Replace with the actual network name if it's different
+});
+  const wallet = new ethers.Wallet("pk", provider);
   
-  const universalProfileAddress = "0x61d397d2c872F521c0A0BCD13d1cb31ec2c8Bc05";
+  const universalProfileAddress = "publickey";
   const ABI = [
     "function execute(uint256 operationType, address target, uint256 value, bytes calldata data) external returns (bytes)"
   ];
@@ -57,7 +63,7 @@ async function setCollectionMetadata() {
       keyName: 'LSP4Metadata',
       value: {
         json: metadataJson,
-        url: "ipfs://bafkreiegzm55gle3yn6hnbehqhb5zpm37bc7722daubusaey6ukaqywg4a",
+        url: "ipfs://bafkreialflecdyxxh6ubflw2ou4dtp5evwkuzeupbkt57yam3cnsdot5je",
       },
     },
   ]);
@@ -74,7 +80,7 @@ async function setCollectionMetadata() {
   // Call execute on the Universal Profile
   const tx = await universalProfile.execute(
     0, // CALL operation
-    "0x67E05cF94d89ad671Ed23c51D2ABA77E7102d4E1", // target contract
+    "contract", // target contract
     0, // value (0 ETH)
     setDataData // encoded setData call
   );
@@ -82,10 +88,13 @@ async function setCollectionMetadata() {
 }
 
 async function setTokenIdMetadata() {
-  const provider = new ethers.JsonRpcProvider("https://rpc.testnet.lukso.network");
-  const wallet = new ethers.Wallet("0x43361a4e65f999bb2fe735d873f393763a931121a4f4ee4d775e8a3cd228a34a", provider);
+  const provider = new ethers.JsonRpcProvider("https://42.rpc.thirdweb.com", {
+    chainId: 42, // Use the correct chain ID for your network
+    name: "lukso", // Replace with the actual network name if it's different
+  });
+  const wallet = new ethers.Wallet("pk", provider);
   
-  const universalProfileAddress = "0x61d397d2c872F521c0A0BCD13d1cb31ec2c8Bc05";
+  const universalProfileAddress = "public";
   const ABI = [
     "function execute(uint256 operationType, address target, uint256 value, bytes calldata data) external returns (bytes)"
   ];
@@ -112,8 +121,8 @@ async function setTokenIdMetadata() {
     {
       keyName: 'LSP4Metadata',
       value: {
-        json: metadataJsonEasy,
-        url: "ipfs://bafkreih6dzat6uajmbcsz2btlyk6mphcuuireqrpp2iunqt2ykwv4g5lku",
+        json: metadataJsonHard,
+        url: "ipfs://bafkreihapve4bymchny6xkivjmltgfpp4abz5drkyeq755dmd7t67xn6nu",
       },
     },
   ]);
@@ -123,7 +132,7 @@ async function setTokenIdMetadata() {
     "function setDataForTokenId(bytes32 tokenId, bytes32 key, bytes value) external"
   ]);
 
-  let difficulty = 1; // Example difficulty
+  let difficulty = 3; // Example difficulty
   let tokenId = ethers.zeroPadValue(ethers.toBeHex(difficulty), 32);
 
   const setDataData = setDataInterface.encodeFunctionData("setDataForTokenId", [
@@ -135,7 +144,7 @@ async function setTokenIdMetadata() {
   // Call execute on the Universal Profile
   const tx = await universalProfile.execute(
     0, // CALL operation
-    "0x67E05cF94d89ad671Ed23c51D2ABA77E7102d4E1", // target contract
+    "contract", // target contract
     0, // value (0 ETH)
     setDataData // encoded setData call
   );

@@ -89,6 +89,11 @@ export const useTypingTest = (
       const normalizedTyped = normalizeText(value);
       const normalizedTarget = normalizeText(targetText);
 
+      if (wpm === 0 || wpm > 160) {
+        window.location.reload();
+        return;
+      }
+
       if (normalizedTyped === normalizedTarget) {
         setIsCompleted(true);
         setInputDisabled(true);

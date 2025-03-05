@@ -15,7 +15,7 @@
                 "url": "ipfs://bafkreihntyhxluginbk3tz5vddxfxiodzsesvbzlkffsiplwuja2l6l7k4",
                 "verification": {
                     "method": "keccak256(bytes)",
-                    "data": "7af8df4da8a80f1a202c5850f9450e0fecb4eec88eafca182da1ada4de81685e"
+                    "data": "0x7af8df4da8a80f1a202c5850f9450e0fecb4eec88eafca182da1ada4de81685e"
                 }
             }
         ],
@@ -27,7 +27,7 @@
                     "url": "ipfs://bafkreihntyhxluginbk3tz5vddxfxiodzsesvbzlkffsiplwuja2l6l7k4",
                     "verification": {
                         "method": "keccak256(bytes)",
-                        "data": "7af8df4da8a80f1a202c5850f9450e0fecb4eec88eafca182da1ada4de81685e"
+                        "data": "0x7af8df4da8a80f1a202c5850f9450e0fecb4eec88eafca182da1ada4de81685e"
                     }
                 }
             ]
