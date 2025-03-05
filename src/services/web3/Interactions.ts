@@ -8,7 +8,7 @@ import abi from "../../../artifacts/contracts/typingGae.sol/TypingLeaderboardNFT
 
 const contractAddress = import.meta.env.VITE_LUKSO_CONTRACT_ADDRESS;
 export const claimTokenForProfile = async (
-  difficultyLevel: 1 | 2 | 3, // 1: easy, 2: normal, 3: hard
+  difficultyLevel: 0 | 1 | 2, // 1: easy, 2: normal, 3: hard
   score: number,
   walletClient: any,
   account: any,
@@ -27,8 +27,6 @@ export const claimTokenForProfile = async (
       chain: chainId === 42 ? lukso : luksoTestnet,
       transport: http(),
     });
-
-    console.log(txHash, "hash");
 
     await publicClient.waitForTransactionReceipt({
       hash: txHash,
