@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Tabs,
   Tab,
@@ -12,6 +12,7 @@ import {
   Paper,
   Typography,
   IconButton,
+  Tooltip,
 } from "@mui/material";
 import { getAllHighScores } from "../../services/firebase/firebase";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -25,9 +26,19 @@ function Leaderboard({ triggerLeaderboard }: any) {
   const [hardScores, setHardScores] = useState([]);
   const { accounts } = useUpProvider();
 
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (score: any) => {
+    if (score.walletAddress) {
+      navigator.clipboard.writeText(score.walletAddress);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+    }
+  };
+
   useEffect(() => {
     const fetchScores = async () => {
-      const fetchedScores = await getAllHighScores() as any;
+      const fetchedScores = (await getAllHighScores()) as any;
 
       setEasyScores(
         fetchedScores
@@ -109,25 +120,28 @@ function Leaderboard({ triggerLeaderboard }: any) {
                 </Typography>
               </TableCell>
               <TableCell>
-                <Typography
-                  variant="body1"
-                  color="secondary"
-                  className={`cursor-pointer underline ${
-                    accounts &&
-                    accounts.length > 0 &&
-                    accounts[0] === score.walletAddress &&
-                    "text-[#F69799]"
-                  }`}
-                >
-                  {score.walletAddress
-                    ? `${score.walletAddress.substring(
-                        0,
-                        4
-                      )}...${score.walletAddress.substring(
-                        score.walletAddress.length - 3
-                      )}`
-                    : "no address"}
-                </Typography>
+                <Tooltip title={copied ? "Copied!" : "Click to copy address"}>
+                  <Typography
+                    onClick={() => handleCopy(score)}
+                    variant="body1"
+                    color="secondary"
+                    className={`cursor-pointer underline ${
+                      accounts &&
+                      accounts.length > 0 &&
+                      accounts[0] === score.walletAddress &&
+                      "text-[#F69799]"
+                    }`}
+                  >
+                    {score.walletAddress
+                      ? `${score.walletAddress.substring(
+                          0,
+                          4
+                        )}...${score.walletAddress.substring(
+                          score.walletAddress.length - 3
+                        )}`
+                      : "no address"}
+                  </Typography>
+                </Tooltip>
               </TableCell>
               <TableCell color="secondary">
                 <Typography variant="body1" sx={{ color: "#4F5882" }}>
