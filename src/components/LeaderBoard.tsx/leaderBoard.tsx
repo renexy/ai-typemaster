@@ -26,13 +26,10 @@ function Leaderboard({ triggerLeaderboard }: any) {
   const [hardScores, setHardScores] = useState([]);
   const { accounts } = useUpProvider();
 
-  const [copied, setCopied] = useState(false);
 
   const handleCopy = (score: any) => {
     if (score.walletAddress) {
-      navigator.clipboard.writeText(score.walletAddress);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+      window.open(`https://universaleverything.io/${score.walletAddress}?network=mainnet&assetGroup=grid`, "_blank");
     }
   };
 
@@ -120,7 +117,7 @@ function Leaderboard({ triggerLeaderboard }: any) {
                 </Typography>
               </TableCell>
               <TableCell>
-                <Tooltip title={copied ? "Copied!" : "Click to copy address"}>
+                <Tooltip title={"Click to view profile"}>
                   <Typography
                     onClick={() => handleCopy(score)}
                     variant="body1"
